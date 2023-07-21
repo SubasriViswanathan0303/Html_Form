@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title></title>
+        <link rel="stylesheet" href="Style/filestyle.css">
+        <script src="Script/formscript.js"></script>
+    </head>
+    <body>
+        <div id="maindiv">
+        <main id="mainsection">
+        <h1>Contact Us</h1>
+        <p>Contact us todayand get reply within 24hours!</p>
+        <form method="post" id="frm1">
+            <div id="textdiv">
+            <input type="text" placeholder="Enter your Name" class="box" id="fname" ><br>
+            <p class="preq" id="p1" style="color: red;">Required*</p>
+
+            <input type="text" placeholder="Enter your Email Address" class="box" id="emailaddress"><br>
+            <p class="preq" id="p2" style="color: red;">Required*</p>
+
+            <input type="text" placeholder="Enter your Phone #" class="box" id="phonenumber"><br>
+            <p class="preq" id="p3" style="color: red;">Required*</p>
+
+            <input type="text" placeholder="Enter your Web Site" class="box" id="website" ><br><br>
+            <p class="preq" id="p4" style="color: red;"></p>
+
+            <textarea  placeholder="Enter your message:" id="message"></textarea><br>
+            <p class="preq" id="p5" style="color: red;">Required*</p>
+            
+            <input type="button" onclick="validation()" value="Sumbit" id="button">
+
+            <p for="name" id="para"></p>
+            <p id="thanknote"></p>
+        </div>
+    </main>
+</div>
+        </form>
+    </body>
+</html>
