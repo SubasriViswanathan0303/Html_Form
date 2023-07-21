@@ -1,0 +1,136 @@
+function validation()
+{
+    var name=document.getElementById('fname').value;
+    var Email=document.getElementById("emailaddress").value;
+    var Phone=document.getElementById("phonenumber").value;
+    var web=document.getElementById("website").value;
+    var message=document.getElementById("message").value;
+
+    if(name.trim()==""||Email.trim()==""||Phone.trim()==""||message.trim()=="")
+    {
+        if(name=="")
+        {
+            document.getElementById("p1").style.visibility="visible";
+        }
+        if(Email=="")
+        {
+            document.getElementById("p2").style.visibility="visible";
+        }
+        if(Phone=="")
+        {
+            document.getElementById("p3").style.visibility="visible";
+        }
+        if(message=="")
+        {
+            document.getElementById("p5").style.visibility="visible";
+        }
+    }
+    if(name !="" || Email!="" || Phone!="" || web!="" || message!="")
+    {
+        var regxname=/^([a-zA-Z]){1,25}$/;
+        var regxemail=/^([a-z0-9]+)@([a-z0-9]+).([a-z]{2,8})$/;
+        var regxphone=/^([0-9]){1}-([0-9]){3}-([0-9]){3}-([0-9]){3}$/;
+        var regxweb=/^(https|http):\/\/www.([a-zA-Z0-9]){3,30}.([a-zA-Z]){2,10}$/;  //https://www.dfdgfhgh.cbvv
+        var regexmessage=/^.{0,140}$/;
+
+        if(name!="")
+        {
+            if(regxname.test(name))
+            {
+              document.getElementById("p1").style.visibility="hidden";
+              document.getElementById("fname").style.border="1.5px solid gainsboro";
+              sessionStorage.setItem("NAME",name);
+            }
+            else
+            {
+            document.getElementById("p1").style.visibility="visible";
+            document.getElementById("p1").innerHTML="Only alphabet is allowed";
+            document.getElementById("fname").style.border="2px solid red";
+            }
+        }
+        
+        if(Email!="")
+        {
+            if(regxemail.test(Email))
+            {
+                document.getElementById("p2").style.visibility="hidden";
+                document.getElementById("emailaddress").style.border="1.5px solid gainsboro";
+                sessionStorage.setItem("EMail",Email);
+            }
+            else
+            {
+                document.getElementById("p2").style.visibility="visible";
+                document.getElementById("p2").innerText="Mail address should be in this format  abc@abc.com  ";
+                document.getElementById("emailaddress").style.border="2px solid red";
+            }
+        }
+        if(Phone!="")
+        {
+            if(regxphone.test(Phone))
+            {
+            document.getElementById("p3").style.visibility="hidden";
+            document.getElementById("phonenumber").style.border="1.5px solid gainsboro";
+            sessionStorage.setItem("PHONE",Phone);
+            }
+            else
+            {
+            document.getElementById("p3").style.visibility="visible";
+            document.getElementById("p3").innerText="Telephone number should be in this format 1-234-534-545";
+            document.getElementById("phonenumber").style.border="2px solid red";
+            }
+        }
+        if(web!="")
+        {
+            if(regxweb.test(web))
+            {
+            document.getElementById("p4").style.visibility="hidden";   
+            document.getElementById("website").style.border="1.5px solid gainsboro";
+            sessionStorage.setItem("WEBSITE",web);
+            }
+            else
+            {
+            document.getElementById("p4").style.visibility="visible";     
+            document.getElementById("p4").innerHTML="Allowed Only url.";
+            document.getElementById("website").style.border="2px solid red";
+            }
+        }
+
+        if(message!="")
+        {
+            if(regexmessage.test(message))
+            {
+             document.getElementById("p5").style.visibility="hidden";
+            document.getElementById("message").style.border="1.5px solid gainsboro";
+            sessionStorage.setItem("MESSAGE",message);
+            }
+            else
+            {
+            document.getElementById("p5").style.visibility="visible";     
+            document.getElementById("p5").innerHTML="Allowed Only 140 Characters.";
+            document.getElementById("message").style.border="2px solid red";
+            }
+        }  
+        view(); 
+    }
+}
+
+function view()
+{
+    var len=sessionStorage.length;
+    var note2=document.getElementById("thanknote");
+    
+     if(len>=5)
+     {
+        var note=document.getElementById("para");
+        note.innerHTML+="<hr><b>We Have Recieved</b><hr><br>";
+        
+        for(var i=0;i<sessionStorage.length;i++)
+         {
+            var key1=sessionStorage.key(i);
+            var val1=sessionStorage.getItem(key1);
+            note.innerHTML =note.innerHTML+`<br><b>${key1}:</b>${val1}<br>`;
+         }  
+         note2.innerHTML ="<b>Thank You</b>";
+    }
+    sessionStorage.clear();
+}    
